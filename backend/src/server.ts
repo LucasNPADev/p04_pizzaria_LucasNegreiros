@@ -2,13 +2,8 @@ import express, { Request, Response, NextFunction } from "express";
 import 'express-async-errors';
 import cors from 'cors';
 import path from 'path';
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
 
 import { router } from "./routes";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -17,14 +12,13 @@ app.use(cors());
 
 app.use(router);
 
-app.use( // Criando uma rota estatica, para acessar a foto enviada e usar no front end
+app.use(
     '/files',
-    express.static(path.resolve(__dirname, '..', 'tmp'))
+    express.static(path.resolve(process.cwd(), 'tmp'))
 );
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {
-        // Se for uma instancia do tipo Error
         return res.status(400).json({
             error: err.message
         });
