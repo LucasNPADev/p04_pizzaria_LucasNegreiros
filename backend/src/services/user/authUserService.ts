@@ -1,6 +1,7 @@
 import prismaClient from "../../prisma";
 import { compare } from "bcryptjs";
-import { sign } from 'jsonwebtoken'
+import jsonwebtoken from 'jsonwebtoken';
+const { sign } = jsonwebtoken;
 
 interface authRequest{ //Dados que devem ser passados para efetuar o login
     email: string,
