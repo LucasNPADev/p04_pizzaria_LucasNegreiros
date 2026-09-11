@@ -20,13 +20,14 @@
   "dependencies": {
     "@prisma/client": "^6.8.2",
     "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.10.0",
+    "cloudinary": "^2.11.0",
     "cors": "^2.8.6",
     "express": "^4.21.1",
     "express-async-errors": "^3.1.1",
     "express-fileupload": "^1.5.2",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
-    "prisma": "^6.8.2"
+    "prisma": "^6.8.2",
+    "sass": "^1.104.0"
   }
 }
