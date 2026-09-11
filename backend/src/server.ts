@@ -3,20 +3,28 @@ import 'express-async-errors';
 import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
-dotenv.config();
+import fileUpload from 'express-fileupload';
 
 import { router } from "./routes";
+
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
+// Middleware de upload com limite de 50MB
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 }
+}));
+
 app.use(router);
 
+// Serve as imagens salvas na pasta tmp
 app.use(
     '/files',
-    express.static(path.resolve(process.cwd(), 'tmp'))
+    express.static(path.resolve(__dirname, '..', 'tmp'))
 );
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
